@@ -40,8 +40,8 @@ function createToggleButton() {
   btn.textContent = isDisabled() ? "RTL Off" : "RTL On";
   Object.assign(btn.style, {
     position: "fixed",
-    bottom: "12px",
-    right: "12px",
+    insetBlockStart: "1rem",
+    insetInlineEnd: "3rem",
     zIndex: 2147483647,
     padding: "6px 10px",
     borderRadius: "6px",
@@ -63,10 +63,34 @@ function updateButton() {
   btn.style.background = isDisabled() ? "#666" : "#111";
 }
 
+const observer = new MutationObserver(() => {
+  if (!isUpdating) {
+    applyStateSafe();
+  }
+});
+
+let isUpdating = false;
+
+function applyStateSafe() {
+  if (isUpdating) return;
+  isUpdating = true;
+  observer.disconnect();
+  applyState();
+  isUpdating = false;
+  observer.observe(document.documentElement, {
+    attributes: true,
+    attributeFilter: ["dir", "lang"],
+  });
+}
+
 function init() {
   setRTLAndPersian();
   createToggleButton();
   applyState();
+  observer.observe(document.documentElement, {
+    attributes: true,
+    attributeFilter: ["dir", "lang"],
+  });
   console.log(
     "RTL in Web: RTL and Persian language applied to",
     window.location.hostname,
@@ -78,13 +102,3 @@ if (document.readyState === "loading") {
 } else {
   init();
 }
-
-const observer = new MutationObserver(() => {
-  // Re-apply the current state (RTL or disabled) when dir/lang attributes change
-  applyState();
-});
-
-observer.observe(document.documentElement, {
-  attributes: true,
-  attributeFilter: ["dir", "lang"],
-});
