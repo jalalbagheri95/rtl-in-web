@@ -15,4 +15,59 @@ html[dir="rtl"] {
     direction: ltr;
     font-family: monospace, console;
   }
+
+  textarea {
+    direction: rtl;
+    font-family: Vazirmatn, sans-serif;
+  }
+
+  /* Simple, semantic, no unnecessary classes */
+  div:has(> div > svg) > div:last-child {
+    margin: 0 !important;
+  }
+}
+
+/* Styles for RTL in Web toggle button (lightweight)
+   Script adds class `rtl-in-web-toggle` to the element. */
+.rtl-in-web-toggle {
+  background: transparent;
+  color: var(--text-primary, #fff);
+  font-size: 14px;
+  font-weight: 500;
+  padding: 6px 10px;
+  border-radius: 8px;
+  border: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+.rtl-in-web-toggle:hover {
+  background: var(--surface-hover, rgba(255, 255, 255, 0.06));
+}
+@media (prefers-color-scheme: light) {
+  .rtl-in-web-toggle {
+    color: var(--text-primary, #111);
+  }
+}
+
+/* Fixed position variant for DeepSeek or when no suitable container found */
+.rtl-in-web-toggle--fixed {
+  position: fixed !important;
+  inset-block-start: 0.7rem !important;
+  inset-inline-end: 3rem !important;
+  z-index: 2147483647 !important;
+  display: flex !important;
+  padding: 8px 12px !important;
+  border-radius: 6px !important;
+  background: rgba(0, 0, 0, 0.75) !important;
+  color: #fff !important;
+  font-size: 12px !important;
+  opacity: 0.95;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+}
+.rtl-in-web-toggle--fixed:hover {
+  background: rgba(0, 0, 0, 0.85) !important;
+  opacity: 1;
 }

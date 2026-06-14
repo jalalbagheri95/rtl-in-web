@@ -1,8 +1,8 @@
 {
-  "manifest_version": 2,
+  "manifest_version": 3,
   "name": "RTL in Web",
-  "version": "1.2",
-  "description": "Force ChatGPT, DeepSeek interface to Persian (fa-IR) with right-to-left (RTL) layout using Vazirmatn font by Saber Rasti Kerdar.",
+  "version": "1.3",
+  "description": "Force ChatGPT and DeepSeek interfaces to Persian (fa-IR) with right-to-left layout using the Vazirmatn font.",
   "icons": {
     "48": "icons/icon.png",
     "128": "icons/icon128.png"
@@ -16,13 +16,15 @@
         "*://chat.deepseek.com/*"
       ],
       "js": ["rtl-script.js"],
-      "css": ["rtl-style.css"]
+      "css": ["rtl-style.css"],
+      "run_at": "document_start"
     }
   ],
   "browser_specific_settings": {
     "gecko": {
-      "id": "@rtl-in-web"
+      "id": "@rtl-in-web",
+      "strict_min_version": "109.0"
     }
   },
-  "permissions": ["activeTab"]
+  "homepage_url": "https://github.com/jalalbagheri95/rtl-in-web"
 }
