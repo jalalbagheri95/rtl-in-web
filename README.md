@@ -1,9 +1,13 @@
+<div style="text-align:center">
+
+![icon](icons/icon128.png)
+
+</div>
+
 # RTL in Web
 
 A lightweight Firefox add-on that forces **ChatGPT** and **DeepSeek** interfaces to display in **Persian (fa-IR)** with **right-to-left (RTL)** layout.  
 This add-on is designed for Persian users who want ChatGPT and DeepSeek to look more natural in their language.
-
----
 
 ## Features
 
